@@ -1,0 +1,9 @@
+<p>
+  <%= for q<-@query do %>
+      
+      <span><%= gettext "%{id} %{fname} %{lname}", id: q.id, fname: q.fname,lname: q.lname  %></span>
+   <p><%=gettext "%{items}", items: q.o_items %></p>
+      
+  <% end %>
+
+</p>
