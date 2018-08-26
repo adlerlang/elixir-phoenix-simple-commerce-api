@@ -4,10 +4,9 @@ defmodule ShiptMa.Order do
 
 
   schema "orders" do
-    field :order_id, :string
     field :status, :string
+    field :order_id, :string
     field :customer_id, :id
-    field :upc, :integer
     has_many :products, ShiptMa.Product
     timestamps()
   end
@@ -15,7 +14,7 @@ defmodule ShiptMa.Order do
   @doc false
   def changeset(order, attrs) do
     order
-    |> cast(attrs, [:order_id, :status ])
+    |> cast(attrs, [:order_id, :customer_id, :status])
     |> validate_required([  :status])
     |> cast_assoc(:products)
   end

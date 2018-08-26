@@ -76,7 +76,6 @@ CREATE TABLE public.orders (
     id bigint NOT NULL,
     status character varying(255),
     order_id character varying(255),
-    upc integer,
     customer_id bigint,
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -108,12 +107,13 @@ ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
 
 CREATE TABLE public.products (
     id bigint NOT NULL,
+    upc character varying(255),
     name character varying(255),
     "desc" character varying(255),
     price double precision,
     weight double precision,
     quanties integer,
-    upc bigint,
+    order_id bigint,
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -202,13 +202,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: products_upc_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX products_upc_index ON public.products USING btree (upc);
-
-
---
 -- Name: orders orders_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -217,11 +210,11 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- Name: products products_upc_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: products products_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.products
-    ADD CONSTRAINT products_upc_fkey FOREIGN KEY (upc) REFERENCES public.orders(id);
+    ADD CONSTRAINT products_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id);
 
 
 --

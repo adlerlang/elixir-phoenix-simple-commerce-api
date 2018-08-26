@@ -1,9 +1,26 @@
-<p>
-  <%= for q<-@query do %>
-      
-      <span><%= gettext "%{id} %{fname} %{lname}", id: q.id, fname: q.fname,lname: q.lname  %></span>
-   <p><%=gettext "%{items}", items: q.o_items %></p>
-      
-  <% end %>
 
-</p>
+ <%= for q<-@query  do %>
+    
+     <%= q.id  %>
+
+    <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <% counter = 1 %>
+        <%= for _ <- [",","list", "with", "data"] do %>
+            <tr>
+                <td><%= counter %></td>
+            </tr>
+            <% counter = counter + 1 %>
+        <% end %>
+ -->    

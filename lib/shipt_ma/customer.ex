@@ -19,7 +19,5 @@ defmodule ShiptMa.Customer do
     |> cast(attrs, [:customer_id, :customer_fname, :customer_lname, :customer_address, :customer_phone])
     |> validate_required([:customer_id, :customer_fname, :customer_lname, :customer_address, :customer_phone])
     |> cast_assoc(:orders)
- #   |> unique_constraint(:customer_id)
-
   end
 end

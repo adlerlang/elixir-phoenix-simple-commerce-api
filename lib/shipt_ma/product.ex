@@ -5,11 +5,12 @@ defmodule ShiptMa.Product do
 
    schema "products" do
     field :name, :string
-    field :upc, :id
     field :desc, :string
     field :price, :float
     field :weight, :float
     field :quanties, :integer
+    field :order_id, :id
+ #    belongs_to :order, ShiptMa.Order
     timestamps()
   end
 
@@ -17,8 +18,8 @@ defmodule ShiptMa.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :upc, :desc, :price, :weight, :quanties])
+    |> cast(attrs, [ :name, :desc, :price, :weight, :quanties])
     |> validate_required([:name])
-
+    
   end
 end

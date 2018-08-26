@@ -16,9 +16,9 @@ defmodule ShiptMaWeb.Router do
   scope "/", ShiptMaWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/orders", PageController, :index
+    get "/", PageController, :index
     get "/api", PageController, :inventory
-    
+    get "/order/:id", PageController, :orders
   end
 
   # Other scopes may use custom stacks.

@@ -3,15 +3,16 @@ defmodule ShiptMa.Repo.Migrations.CreateProducts do
 
   def change do
     create table(:products) do
+      add :upc, :string
       add :name, :string
       add :desc, :string
       add :price, :float
       add :weight, :float
       add :quanties, :integer
-      add :upc, references(:orders, on_delete: :nothing)
+      add :order_id, references(:orders, on_delete: :nothing)
       timestamps()
     end
 
-    create index(:products, [:upc])
+   # create index(:products, [:order_id])
   end
 end
