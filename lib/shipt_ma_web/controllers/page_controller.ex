@@ -26,12 +26,14 @@
    def orders(conn, %{"id"=>id} ) do
 
      c = Customer |> Repo.get(id) |> Repo.preload(orders: :products)
-    
 
-     orders = for o <- c.orders, do:  %{order_id: o.order_id, status: o.status }
-
-       
-   json conn, orders
+     
+     y = List.flatten(c.orders)
+     IO.inspect y
+     IO.inspect c
+     
+     orders = for o <- c.orders, do:  %{order_id: o.order_id, status: o.status			 }
+     json conn, orders
 
   end
 

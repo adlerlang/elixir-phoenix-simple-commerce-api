@@ -17,5 +17,6 @@ defmodule ShiptMa.Order do
     |> cast(attrs, [:order_id, :customer_id, :status])
     |> validate_required([  :status])
     |> cast_assoc(:products)
+    
   end
 end

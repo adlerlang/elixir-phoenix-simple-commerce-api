@@ -3,12 +3,10 @@ alias ShiptMa.{Repo,Customer,Order, Product}
 
 
 
-product = [%{order_id: "1", name: "shoe",  desc: "size 15 shoe", price: 4.33, weight: 32.0, quanties: 3},
-          %{order_id: "1", name: "pizza" , desc: "cheese pizza", price: 8.00, weight: 3.0, quanties: 3}]
-
-
-order1 = [%{order_id: "1",  customer_id: "1", status: "delivered"},
-	  %{order_id: "1",   customer_id: "1", status: "delivered",
+product = [%{ order_id: "1", name: "shoe",  desc: "size 15 shoe", price: 4.33, weight: 32.0, quanties: 3},
+          %{order_: "2", name: "pizza" , desc: "cheese pizza", price: 8.00, weight: 3.0, quanties: 3}]
+order1 = [%{order_id: "1",  customer_id: "1", status: "delivered", products: product},
+	  %{order_id: "2",   customer_id: "1", status: "delivered",
 	    products: product
 
 	  }]

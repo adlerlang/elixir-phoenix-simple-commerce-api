@@ -18,7 +18,7 @@ defmodule ShiptMa.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [ :name, :desc, :price, :weight, :quanties])
+    |> cast(attrs, [ :name, :desc, :order_id,:price, :weight, :quanties])
     |> validate_required([:name])
     
   end
