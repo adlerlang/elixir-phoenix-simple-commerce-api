@@ -3,7 +3,7 @@ defmodule ShiptMa.Repo.Migrations.CreateCustomers do
 
   def change do
     create table(:customers) do
-      add :customer_id, :string
+      add :customer_id, :integer
       add :customer_fname, :string
       add :customer_lname, :string
       add :customer_address, :string

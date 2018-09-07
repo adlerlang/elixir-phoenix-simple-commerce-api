@@ -8,7 +8,8 @@ defmodule ShiptMa.Repo.Migrations.CreateProducts do
       add :desc, :string
       add :price, :float
       add :weight, :float
-      add :quanties, :integer
+      add :quantities, :integer
+      add :order_date, :date
       add :order_id, references(:orders, on_delete: :nothing)
       timestamps()
     end

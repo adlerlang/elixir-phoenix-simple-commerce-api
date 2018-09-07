@@ -1,3 +1,4 @@
+
 defmodule ShiptMaWeb.Router do
   use ShiptMaWeb, :router
 
@@ -18,7 +19,10 @@ defmodule ShiptMaWeb.Router do
 
     get "/", PageController, :index
     get "/api", PageController, :inventory
-    get "/order/:id", PageController, :orders
+    get "/order/:id", PageController, :order
+    get "/orders/:month/:day/:year", PageController, :orders 
+    get "/test/:id", PageController, :tl
+
   end
 
   # Other scopes may use custom stacks.

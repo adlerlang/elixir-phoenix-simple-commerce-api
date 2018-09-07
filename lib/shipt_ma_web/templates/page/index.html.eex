@@ -1,8 +1,10 @@
 
  <%= for q<-@query  do %>
-    
+ <a href = "./order/<%= q.id %>"> 
      <%= q.id  %>
-
+     <%= q.fname %>
+     <%= q.lname %>
+    </a >
     <% end %>
 
 

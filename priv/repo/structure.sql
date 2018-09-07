@@ -39,7 +39,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.customers (
     id bigint NOT NULL,
-    customer_id character varying(255),
+    customer_id integer,
     customer_fname character varying(255),
     customer_lname character varying(255),
     customer_address character varying(255),
@@ -75,7 +75,7 @@ ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
 CREATE TABLE public.orders (
     id bigint NOT NULL,
     status character varying(255),
-    order_id character varying(255),
+    order_id integer,
     customer_id bigint,
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -112,7 +112,7 @@ CREATE TABLE public.products (
     "desc" character varying(255),
     price double precision,
     weight double precision,
-    quanties integer,
+    quantities integer,
     order_id bigint,
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

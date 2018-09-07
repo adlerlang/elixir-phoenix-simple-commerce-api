@@ -5,7 +5,7 @@ defmodule ShiptMa.Order do
 
   schema "orders" do
     field :status, :string
-    field :order_id, :string
+    field :order_id, :integer
     field :customer_id, :id
     has_many :products, ShiptMa.Product
     timestamps()
