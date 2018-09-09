@@ -23,14 +23,13 @@
    end
 
 
-   def order(conn, %{"id"=>id} ) do
+   def orders(conn, %{"id"=>id} ) do
 
      c = Customer |> Repo.get(id) |> Repo.preload(orders: :products)
-     #IO.inspect c.orders
-     #orders = for o <- c.orders, do:  %{order_id: o.order_id, status: o.status}
+   
            orders = for o <- c.orders do
                for p <- o.products do
-	         %{c: o.customer_id, time: o.inserted_at.day,  products: p.name, price: p.price, month: o.inserted_at.month, weight: p.weight, quantities: p.quantities, newdate: p.order_date.day, newweek: p.order_date.week }
+	         %{customer_id: o.customer_id, time: o.inserted_at.day,  products: p.name, price: p.price, weight: p.weight, quantities: p.quantities, ordered_date: p.order_date}
        
 	      end
 	      end
@@ -40,28 +39,35 @@
 
 
 
-   def orders(conn, %{"day"=>day, "month"=> month, "year"=>year} ) do
-    # products = Repo.all(from p in "products", select: p.inserted_at)
+   def sales_range(conn, %{"start_date" => start_date, "end_date" => end_date} ) do
 
-
+     
+     {start_d, end_d} =
+       try do
+	 {NaiveDateTime.from_iso8601!(start_date  <> " 00:00:00"),
+	  NaiveDateTime.from_iso8601!(end_date <> " 00:00:00") }     
+       rescue
+       _-> json conn, %{error: "resort to README for proper urls "}
+       end
 
 
      
-     products =  Repo.all(from p in Product, select: [p.id, p.order_date,  p.inserted_at]) 
-
+     
+     products =  Repo.all(from p in Product, select: %{id: p.order_id, product: p.name, quantities: p.quantities, p: p.inserted_at}, where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d  )
+ 
+   IO.inspect products
 
      
-    
      json conn, %{products: products}
-    
+     
+  
+
+
    end
+  
 
 
-   def tl(conn, %{"id"=>id}) do
-   # V = Postgrex.query{p
-  json conn, %{1=>1}
-   end
-
+   
    
     
 end

@@ -18,12 +18,13 @@ defmodule ShiptMaWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/api", PageController, :inventory
-    get "/order/:id", PageController, :order
-    get "/orders/:month/:day/:year", PageController, :orders 
-    get "/test/:id", PageController, :tl
+    get "/order/:id", PageController, :orders
+    #get "/orders/:start_date/:end_date", PageController, :orders 
+    
+   get "/sales/:start_date/:end_date", PageController, :sales_range
+    end
 
-  end
+ 
 
   # Other scopes may use custom stacks.
   # scope "/api", ShiptMaWeb do

@@ -3,7 +3,7 @@ defmodule ShiptMa.Product do
   import Ecto.Changeset
 
   
-   schema "products" do
+  schema "products" do
     field :upc,  :string
     field :name, :string
     field :desc, :string
@@ -11,8 +11,6 @@ defmodule ShiptMa.Product do
     field :weight, :float
     field :quantities, :integer
     field :order_id, :id
-    field :order_date, :date
-    #    belongs_to :order, ShiptMa.Order
     timestamps()
   end
 
@@ -20,7 +18,7 @@ defmodule ShiptMa.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:upc, :name, :desc, :order_id,:price, :weight, :quantities, :order_date])
+    |> cast(attrs, [:upc, :name, :desc, :order_id,:price, :weight, :quantities])
     |> validate_required([:name])
     
   end

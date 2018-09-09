@@ -1,11 +1,16 @@
-
- <%= for q<-@query  do %>
- <a href = "./order/<%= q.id %>"> 
+<h3> sample users can view orders </h3>
+<ul> <%= for q<-@query  do %>
+<li><a href = "./order/<%= q.id %>"> 
      <%= q.id  %>
      <%= q.fname %>
      <%= q.lname %>
-    </a >
+    </a ></li>
     <% end %>
+</ul>
+<h3>this is a sample date range</h3>
+<ul>
+<li><a href ="http://localhost:4000/sales/2014-06-03/2018-06-13">2014-6-03 thru 2018-06-2018 </a></li>
+</ul
 
 
 
@@ -13,16 +18,3 @@
 
 
 
-
-
-
-
-
-<!-- <% counter = 1 %>
-        <%= for _ <- [",","list", "with", "data"] do %>
-            <tr>
-                <td><%= counter %></td>
-            </tr>
-            <% counter = counter + 1 %>
-        <% end %>
- -->    
