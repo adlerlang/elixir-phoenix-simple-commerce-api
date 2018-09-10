@@ -53,12 +53,18 @@
 
      
      
-     products =  Repo.all(from p in Product, select: %{id: p.order_id, product: p.name, quantities: p.quantities, p: p.inserted_at}, where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d  )
- 
-   IO.inspect products
+     products_query =  Repo.all(
+       from p in Product, select: %{product_name: p.name, product_description: p.desc, quantities: sum(p.quantities)},
+        group_by: [p.name, p.quantities, p.desc],
+        where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d
+     )
 
      
-     json conn, %{products: products}
+   
+
+   
+     
+     json conn, %{products: products_query}
      
   
 

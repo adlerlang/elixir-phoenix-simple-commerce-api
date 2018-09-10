@@ -7,9 +7,11 @@
     </a ></li>
     <% end %>
 </ul>
+
+
 <h3>this is a sample date range</h3>
 <ul>
-<li><a href ="http://localhost:4000/sales/2014-06-03/2018-06-13">2014-6-03 thru 2018-06-2018 </a></li>
+<li><a href ="api/sales/2014-06-03/2019-06-13">2014-6-03 thru 2018-06-2018 </a></li>
 </ul
 
 

@@ -7,11 +7,13 @@ product = [%{upc: "1-23432-43453-74343-0", order_id: 1, name: "ice cream",  desc
            %{upc: "1-21542-34345-26534-3" ,order_id: 1, name: "pizza" , desc: "cheese pizza", price: 8.00, weight: 3.5, quantities: 4}
 	  ]
 
-product2 = [%{upc: "6-45443-00000-79073-1", order_id: 2, name: "oranges",  desc: "pound of oranges", price: 5.00, weight: 32.1, quantities: 3},
+product2 = [%{upc: "6-45443-00000-79073-1", order_id: 2, name: "oranges",  desc: "pound of oranges", price: 5.00, weight: 1.0, quantities: 3},
              %{upc: "8-98792-00345-22334-1" ,order_id: 2, name: "apples" , desc: "pound of apples", price: 8.00, weight: 3.5, quantities: 1}
            ]
 
-products3 = [ %{upc: "9-98792-00745-27634-0" ,order_id: 3, name: "chicken" , desc: "roasted chicken", price: 10.00, weight: 1, quantities: 1}]
+products3 = [
+  %{upc: "6-45443-00000-79073-1", order_id: 3, name: "oranges",  desc: "pound of oranges", price: 5.00, weight: 1.0, quantities: 3},
+  %{upc: "9-98792-00745-27634-0" ,order_id: 3, name: "chicken" , desc: "roasted chicken", price: 10.00, weight: 1, quantities: 1}]
 
 
 order1 = [%{order_id: 1,  customer_id: 1, status: "delivered", products: product},
