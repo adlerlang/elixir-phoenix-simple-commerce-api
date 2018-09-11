@@ -29,51 +29,56 @@
    
            orders = for o <- c.orders do
                for p <- o.products do
-	         %{customer_id: o.customer_id, time: o.inserted_at.day,  products: p.name, price: p.price, weight: p.weight, quantities: p.quantities, ordered_date: p.order_date}
+	         %{customer_id: o.customer_id, time: o.inserted_at.day,  products: p.name, price: p.price, weight: p.weight, quantities: p.quantities}
        
 	      end
 	      end
        json conn, %{orders: orders}
 
   end
+   
+   
 
-
-
-   def sales_range(conn, %{"start_date" => start_date, "end_date" => end_date} ) do
-
-     
-     {start_d, end_d} =
+   def sales_range(conn, %{"start_date" => start_date, "end_date" => end_date}=params ) do
+  {start_d, end_d} =
        try do
-	 {NaiveDateTime.from_iso8601!(start_date  <> " 00:00:00"),
-	  NaiveDateTime.from_iso8601!(end_date <> " 00:00:00") }     
+         {NaiveDateTime.from_iso8601!(start_date  <> " 00:00:00"),
+          NaiveDateTime.from_iso8601!(end_date <> " 00:00:00") }
        rescue
        _-> json conn, %{error: "resort to README for proper urls "}
        end
+	
+        products_query =  Repo.all(from p in Product, select: %{name: p.name, description: p.desc, qty: sum(p.quantities), price: p.price},
+	group_by: [p.name, p.quantities, p.desc, p.price],
+	where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d)
 
-
-     
-     
-     products_query =  Repo.all(
-       from p in Product, select: %{product_name: p.name, product_description: p.desc, quantities: sum(p.quantities)},
-        group_by: [p.name, p.quantities, p.desc],
-        where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d
-     )
-
-     
-   
-
-   
-     
-     json conn, %{products: products_query}
-     
+ 
+          case params["csv"] do	
+          "true"-> conn
+    |> put_resp_content_type("text/csv")
+    |> put_resp_header("content-disposition", "attachment; filename=\"Shipt_Sales.csv\"")
+    |> send_resp(200, csv(products_query))
+ 
+	   _->json conn, %{products: products_query}
+          end
   
 
 
    end
-  
 
+   def export(conn, _params) do
+    conn
+    |> put_resp_content_type("text/csv")
+    |> put_resp_header("content-disposition", "attachment; filename=\"Shipt_Sales.csv\"")
+   # |> send_resp(200, csv())
+  end
 
-   
-   
-    
+ defp csv(data) do
+  # data = Product |> Repo.all(group_by: [:name, :description, :price, :quantities]) |> Enum.map(fn(p)-> %{name: p.name, description: p.desc, price: p.price, qty: p.quantities } end)
+   #IO.inspect data
+     data
+     |>CSV.encode(headers: [:name, :description, :price, :qty])
+     |> Enum.to_list
+     |> to_string
+  end
 end

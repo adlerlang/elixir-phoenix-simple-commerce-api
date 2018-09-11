@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :shipt_ma, ShiptMa.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "protomikex",
+  password: "tdttoday",
   database: "shipt_ma_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
