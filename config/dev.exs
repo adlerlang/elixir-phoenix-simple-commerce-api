@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :shipt_ma, ShiptMa.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "protomikex",
-  password: "tdftoday",
+  username: "postgres",
+  password: "postgres",
   database: "shipt_ma_dev",
   hostname: "localhost",
   pool_size: 10

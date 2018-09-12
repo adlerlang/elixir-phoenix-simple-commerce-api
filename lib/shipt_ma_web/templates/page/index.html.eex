@@ -9,9 +9,11 @@
 </ul>
 
 
-<h3>this is a sample date range</h3>
+<h3>this is a sample date range and csv data</h3>
 <ul>
-<li><a href ="api/sales/2014-06-03/2019-06-13">2014-6-03 thru 2018-06-2018 </a></li>
+  <li><a href ="api/sales/2014-06-03/2019-06-13">2014-6-03 thru 2018-06-2018 </a></li>
+  <li><a href ="api/sales/2014-06-03/2019-06-13/?csv=true">csv download for the above dates as an example</a></li>
+
 </ul
 
 

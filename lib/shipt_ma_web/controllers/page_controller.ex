@@ -51,8 +51,6 @@
         products_query =  Repo.all(from p in Product, select: %{name: p.name, description: p.desc, qty: sum(p.quantities), price: p.price},
 	group_by: [p.name, p.quantities, p.desc, p.price],
 	where: p.inserted_at >= ^start_d and p.inserted_at <= ^end_d)
-
- 
           case params["csv"] do	
           "true"-> conn
     |> put_resp_content_type("text/csv")
@@ -66,18 +64,11 @@
 
    end
 
-   def export(conn, _params) do
-    conn
-    |> put_resp_content_type("text/csv")
-    |> put_resp_header("content-disposition", "attachment; filename=\"Shipt_Sales.csv\"")
-   # |> send_resp(200, csv())
-  end
+   
 
  defp csv(data) do
-  # data = Product |> Repo.all(group_by: [:name, :description, :price, :quantities]) |> Enum.map(fn(p)-> %{name: p.name, description: p.desc, price: p.price, qty: p.quantities } end)
-   #IO.inspect data
      data
-     |>CSV.encode(headers: [:name, :description, :price, :qty])
+     |> CSV.encode(headers: [:name, :description, :price, :qty])
      |> Enum.to_list
      |> to_string
   end
