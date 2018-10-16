@@ -26,31 +26,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
     types using Ecto.type.
 
 
-# Question 8: 
-    My current application uses belongs_to and has_many and is possible to do has_many through with an inbetween database for
-    one-click relationships. Relationable databases are pretty well defined (bit more restrictive) 
-	but Nosql has a bit more scalability when it comes to adding more data fields without affecting the current data structure 
-	but can get cluttered if not maintained.
+#happy with best chances of obtaining their order.
 
-
-# Question 9: 
-     Erlang and Elixir applications were built to handle soft realtime, concurrent applications.
-     Because we are doing one-click ship, it's best for the items to be sold first come first served checkout until the item(s) sell out.
-     Would be best to use machine learning to determine if the item availabilty is a bit further from the customer, and might
-     take longer for delivery, to utilize resources where items might be more abundant during times of high demand. Possible to
-     have quantity limits per customer if it's a must. Try to keep customers happy with best chances of obtaining their order.
-
-
-
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
 
 
